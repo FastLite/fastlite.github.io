@@ -553,7 +553,7 @@ ul#nav li.current a { color: #F06000; }
    cursor: pointer;
 }
 .popup-modal a:hover {	color: #00CCCC; }
-.popup-modal a.popup-modal-dismiss { margin-left: 24px; }
+.popup-modal a.popup-modal-download { margin-left: 24px; }
 
 
 /* fadein/fadeout effect for modal popup

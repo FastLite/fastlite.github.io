@@ -555,6 +555,13 @@ ul#nav li.current a { color: #F06000; }
 .popup-modal a:hover {	color: #00CCCC; }
 .popup-modal a.popup-modal-download { margin-left: 24px; }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 
 /* fadein/fadeout effect for modal popup
 /* ------------------------------------------------------------------ */

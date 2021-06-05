@@ -285,7 +285,7 @@ ul#nav li.current a { color: #F06000; }
 /*	Skill Bars
 /*----------------------------------------------*/
 
-.bars {
+/* .bars {
 	width: 95%;
 	float: left;
 	padding: 0;
@@ -354,7 +354,7 @@ ul#nav li.current a { color: #F06000; }
   	width: 50%;
   	-moz-animation: jquery 2s ease;
   	-webkit-animation: jquery 2s ease;
-}
+} */
 
 @-moz-keyframes photoshop {
   0%   { width: 0px;  }

@@ -8,4 +8,4 @@ summary: "This is a short summary of my first blog post in English."
 # My First Blog Post
 
 Welcome to my blog! This is the first post in English.
-![My screenshot](../imag/скелет.png)
+![My screenshot](../img/скелет.png)

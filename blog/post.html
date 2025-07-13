@@ -26,7 +26,7 @@
     <ul>
       <li><a href="../index.html">Portfolio</a></li>
       <li><a href="index.html">Blog</a></li>
-      <li class="lang-switch"><b id="en-link">EN</b> | <b><a id="ru-link" href="#">RU</a></b></li>
+      <li class="lang-switch"><b id="en-link">EN</b> | <a id="ru-link" >RU</a></li>
     </ul>
   </nav>
   <div class="post-container">
@@ -44,13 +44,34 @@
     let lang = getQueryParam('lang') || 'en';
     if (lang !== 'en' && lang !== 'ru') lang = 'en';
 
-    // Language switch links
-    document.getElementById('en-link').innerHTML = lang === 'en' ? 'EN' : '<a href="#" onclick="switchLang(\'en\')">EN</a>';
-    document.getElementById('ru-link').innerHTML = lang === 'ru' ? 'RU' : '<a href="#" onclick="switchLang(\'ru\')">RU</a>';
-    function switchLang(newLang) {
-      const params = new URLSearchParams(window.location.search);
-      params.set('lang', newLang);
-      window.location.search = params.toString();
+    // Динамическая кнопка смены языка
+    async function setLangSwitch(currentFile, currentLang) {
+      // Получаем posts.json
+      let posts = [];
+      try {
+        const resp = await fetch('posts.json');
+        posts = await resp.json();
+      } catch (e) {}
+      // Находим текущий пост
+      const thisPost = posts.find(p => p.file === currentFile && p.lang === currentLang);
+      // Находим альтернативу
+      const altPost = posts.find(p => {
+        // Сравниваем по дате и названию, но другой язык
+        return p.lang !== currentLang && p.date === (thisPost ? thisPost.date : null);
+      });
+      // Формируем кнопки
+      let html = '';
+      if (thisPost) {
+        html += `<b>${currentLang.toUpperCase()}</b>`;
+        if (altPost) {
+          const altLang = altPost.lang;
+          const altUrl = `post.html?file=${encodeURIComponent(altPost.file)}&lang=${altLang}`;
+          html += ` | <b><a href="${altUrl}" style="color:#222;">${altLang.toUpperCase()}</a></b>`;
+        }
+      } else {
+        html = `<b>${currentLang.toUpperCase()}</b>`;
+      }
+      document.querySelector('.lang-switch').innerHTML = html;
     }
 
     // Load and render post
@@ -59,8 +80,8 @@
         document.getElementById('post-content').innerHTML = '<div style="color:#c00;">No post specified.</div>';
         return;
       }
-      // file уже содержит относительный путь, не добавляем lang
       const mdPath = file;
+      await setLangSwitch(file, lang);
       try {
         const resp = await fetch(mdPath);
         if (!resp.ok) throw new Error('Not found');

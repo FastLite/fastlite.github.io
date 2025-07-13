@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Post | FastLite Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/default.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/media-queries.css">
+  <link rel="stylesheet" href="../css/magnific-popup.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    body { background: #f7f8fa; }
+    .blog-nav { width: 100%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; min-height: 60px; }
+    .blog-nav ul { list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center; }
+    .blog-nav a { text-decoration: none; color: #222; font-weight: 500; }
+    .post-container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); padding: 40px 32px; }
+    .post-title { font-size: 2.2em; font-weight: bold; margin-bottom: 0.2em; }
+    .post-date { color: #888; font-size: 1em; margin-bottom: 1.5em; }
+    .lang-switch { margin-left: 16px; }
+  </style>
+</head>
+<body>
+  <nav class="blog-nav">
+    <div style="font-weight: bold; font-size: 1.2em; letter-spacing: 1px;">FastLite Blog</div>
+    <ul>
+      <li><a href="../index.html">Portfolio</a></li>
+      <li><a href="index.html">Blog</a></li>
+      <li class="lang-switch"><b id="en-link">EN</b> | <b><a id="ru-link" href="#">RU</a></b></li>
+    </ul>
+  </nav>
+  <div class="post-container">
+    <div id="post-content">
+      <div style="text-align:center;color:#aaa;">Loading post...</div>
+    </div>
+  </div>
+  <script>
+    // Parse URL params
+    function getQueryParam(name) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+    const file = getQueryParam('file');
+    let lang = getQueryParam('lang') || 'en';
+    if (lang !== 'en' && lang !== 'ru') lang = 'en';
+
+    // Language switch links
+    document.getElementById('en-link').innerHTML = lang === 'en' ? 'EN' : '<a href="#" onclick="switchLang(\'en\')">EN</a>';
+    document.getElementById('ru-link').innerHTML = lang === 'ru' ? 'RU' : '<a href="#" onclick="switchLang(\'ru\')">RU</a>';
+    function switchLang(newLang) {
+      const params = new URLSearchParams(window.location.search);
+      params.set('lang', newLang);
+      window.location.search = params.toString();
+    }
+
+    // Load and render post
+    async function loadPost() {
+      if (!file) {
+        document.getElementById('post-content').innerHTML = '<div style="color:#c00;">No post specified.</div>';
+        return;
+      }
+      const mdPath = `./${lang}/${file}`;
+      try {
+        const resp = await fetch(mdPath);
+        if (!resp.ok) throw new Error('Not found');
+        const md = await resp.text();
+        // Extract frontmatter (--- ... ---)
+        let title = '', date = '';
+        let content = md;
+        const fm = md.match(/^---([\s\S]*?)---/);
+        if (fm) {
+          const fmLines = fm[1].split('\n');
+          fmLines.forEach(line => {
+            if (line.startsWith('title:')) title = line.replace('title:', '').trim();
+            if (line.startsWith('date:')) date = line.replace('date:', '').trim();
+          });
+          content = md.replace(fm[0], '').trim();
+        }
+        document.title = (title ? title + ' | ' : '') + 'FastLite Blog';
+        document.getElementById('post-content').innerHTML =
+          `<div class="post-title">${title}</div>` +
+          `<div class="post-date">${date}</div>` +
+          `<div class="post-body">${marked.parse(content)}</div>`;
+      } catch (e) {
+        document.getElementById('post-content').innerHTML = '<div style="color:#c00;">Post not found.</div>';
+      }
+    }
+    loadPost();
+  </script>
+</body>
+</html>

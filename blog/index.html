@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | FastLite</title>
+  <link rel="stylesheet" href="../css/default.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/media-queries.css">
+  <style>
+    .blog-header { font-size: 2.2em; font-weight: bold; margin: 1.5em 0 1em 0; text-align: center; }
+    .blog-post-list { max-width: 700px; margin: 0 auto; padding: 0 16px; }
+    .blog-post-preview { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); margin-bottom: 2em; padding: 2em 2em 1.2em 2em; }
+    .blog-post-title { font-size: 1.5em; font-weight: bold; margin-bottom: 0.2em; }
+    .blog-post-date { color: #888; font-size: 0.95em; margin-bottom: 0.7em; }
+    .blog-post-summary { font-size: 1.1em; color: #222; margin-bottom: 1em; }
+    .lang-switch { text-align: right; margin-bottom: 1.5em; color: #222;}
+    .lang-switch button { margin-left: 8px; padding: 4px 12px; border-radius: 6px; border: 1px solid #eee; background: #f7f8fa; cursor: pointer; font-weight: 500; color: #111; }
+    .lang-switch button.active { background: #f05ad3; color: #fff; border: 1px solid #f05ad3; }
+  </style>
+</head>
+<body style="background: #f7f8fa;">
+  <nav style="width: 100%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; min-height: 60px;">
+    <div style="font-weight: bold; font-size: 1.2em; letter-spacing: 1px;"><a href="../index.html" style="color: #222; text-decoration: none;">FastLite Portfolio</a></div>
+    <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+      <li><a href="../index.html" style="text-decoration: none; color: #222; font-weight: 500;">Home</a></li>
+      <li><a href="../index.html#about" style="text-decoration: none; color: #222; font-weight: 500;">About</a></li>
+      <li><a href="../index.html#portfolio" style="text-decoration: none; color: #222; font-weight: 500;">Works</a></li>
+      <li><a href="index.html" style="text-decoration: none; color: #222; font-weight: 500; font-weight: bold;">Blog</a></li>
+      <li><b>EN</b> | <b><a href="../index-ru.html" style="color: #222;">RU</a></b></li>
+    </ul>
+  </nav>
+  <div class="blog-header">Blog</div>
+  <div class="lang-switch">
+    <span>Language:</span>
+    <button id="lang-en" class="active">EN</button>
+    <button id="lang-ru">RU</button>
+  </div>
+  <div class="blog-post-list" id="blog-post-list">
+    <!-- Blog posts will be loaded here -->
+  </div>
+  <script>
+    let currentLang = 'en';
+    const postsUrl = 'posts.json';
+    const postList = document.getElementById('blog-post-list');
+    function renderPosts(posts) {
+      postList.innerHTML = '';
+      posts.forEach(post => {
+        const div = document.createElement('div');
+        div.className = 'blog-post-preview';
+        // Формируем ссылку на post.html с параметрами file и lang
+        const postUrl = `post.html?file=${encodeURIComponent(post.file)}&lang=${encodeURIComponent(post.lang)}`;
+        div.innerHTML = `<div class="blog-post-title"><a href="${postUrl}" style="color:#f05ad3; text-decoration:none;">${post.title}</a></div><div class="blog-post-date">${post.date}</div><div class="blog-post-summary">${post.summary}</div><a href="${postUrl}" style="color:#111;">Read more...</a>`;
+        postList.appendChild(div);
+      });
+    }
+    function loadPosts(lang) {
+      fetch(postsUrl)
+        .then(r => r.json())
+        .then(data => {
+          const filtered = data.filter(p => p.lang === lang);
+          renderPosts(filtered.sort((a,b)=>b.date.localeCompare(a.date)));
+        });
+    }
+    document.getElementById('lang-en').onclick = function() {
+      currentLang = 'en';
+      this.classList.add('active');
+      document.getElementById('lang-ru').classList.remove('active');
+      loadPosts('en');
+    };
+    document.getElementById('lang-ru').onclick = function() {
+      currentLang = 'ru';
+      this.classList.add('active');
+      document.getElementById('lang-en').classList.remove('active');
+      loadPosts('ru');
+    };
+    loadPosts(currentLang);
+  </script>
+</body>
+</html>

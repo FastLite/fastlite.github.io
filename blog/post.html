@@ -59,7 +59,8 @@
         document.getElementById('post-content').innerHTML = '<div style="color:#c00;">No post specified.</div>';
         return;
       }
-      const mdPath = `./${lang}/${file}`;
+      // file уже содержит относительный путь, не добавляем lang
+      const mdPath = file;
       try {
         const resp = await fetch(mdPath);
         if (!resp.ok) throw new Error('Not found');
@@ -78,11 +79,11 @@
         }
         document.title = (title ? title + ' | ' : '') + 'FastLite Blog';
         document.getElementById('post-content').innerHTML =
-          `<div class="post-title">${title}</div>` +
-          `<div class="post-date">${date}</div>` +
-          `<div class="post-body">${marked.parse(content)}</div>`;
+          `<div class=\"post-title\">${title}</div>` +
+          `<div class=\"post-date\">${date}</div>` +
+          `<div class=\"post-body\">${marked.parse(content)}</div>`;
       } catch (e) {
-        document.getElementById('post-content').innerHTML = '<div style="color:#c00;">Post not found.</div>';
+        document.getElementById('post-content').innerHTML = '<div style="color:#c00;">Post not found.<br><small>' + (e.message || e) + '</small></div>';
       }
     }
     loadPost();

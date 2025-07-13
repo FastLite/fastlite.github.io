@@ -1,0 +1,11 @@
+{
+  "name": "fastlite-blog",
+  "version": "1.0.0",
+  "description": "FastLite Portfolio and Blog",
+  "main": "index.js",
+  "scripts": {
+    "generate-posts": "node generate-posts-json.js"
+  },
+  "author": "Vladislav Volodin",
+  "license": "MIT"
+}

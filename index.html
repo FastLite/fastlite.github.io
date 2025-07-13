@@ -38,14 +38,15 @@
 
 
   <!-- Навигационная шапка -->
-  <nav style="width: 100%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; min-height: 60px;">
-<div style="font-weight: bold; font-size: 1.2em; letter-spacing: 1px;"><a href="../index.html" style="color: #222; text-decoration: none;">FastLite Portfolio</a></div>    <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
-      <li><a class="smoothscroll" href="#home" style="text-decoration: none; color: #222; font-weight: 1000;">Home</a></li>
-     <!--  <li><a class="smoothscroll" href="#about" style="text-decoration: none; color: #222; font-weight: 500;">About</a></li> -->
-      <li><a href="blog/index.html" style="text-decoration: none; color: #222; font-weight: 500;">Blog</a></li>
-      <li><b style="color: #222;">EN</b> | <b><a href="index-ru.html" style="color: #6e6e6e;">RU</a></b></li>
-    </ul>
-  </nav>
+<nav style="width: 100%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; min-height: 60px;">
+  <div style="font-weight: bold; font-size: 1.2em; letter-spacing: 1px;"><a href="../index.html" style="color: #222; text-decoration: none;">FastLite Portfolio</a></div>
+  <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+    <li><b style="color: #222;">EN</b> | <b><a href="index-ru.html" style="color: #6e6e6e;">RU</a></b></li>
+    <li><a class="smoothscroll" href="#home" style="text-decoration: none; color: #222; font-weight: 1000; ">Home</a></li>
+    <!--  <li><a class="smoothscroll" href="#about" style="text-decoration: none; color: #222; font-weight: 500;">About</a></li> -->
+    <li><a href="blog/index.html" style="text-decoration: none; color: #222; font-weight: 500;">Blog</a></li>
+  </ul>
+</nav>
 
   <!-- Новый верхний блок -->
   <div style="background: #f7f8fa; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin: 0; padding: 0;">
@@ -887,10 +888,18 @@
             var imgMatch = md.match(/!\[[^\]]*\]\(([^)]+)\)/);
             var videoMatch = md.match(/<video[^>]*src=["']([^"']+)["'][^>]*>/i);
             var mediaHtml = '';
+            function fixPath(p) {
+              // If path is absolute (starts with http/https or /), leave as is
+              if (/^(https?:)?\//.test(p)) return p;
+              // If path starts with 'blog/', don't prepend
+              if (p.startsWith('blog/')) return p;
+              // Otherwise, prepend 'blog/'
+              return 'blog/' + p;
+            }
             if (imgMatch) {
-              mediaHtml = '<img src="blog/' + imgMatch[1] + '" alt="Preview image" style="max-width: 200px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0.7em; cursor:pointer;">';
+              mediaHtml = '<img src="' + fixPath(imgMatch[1]) + '" alt="Preview image" style="max-width: 200px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0.7em; cursor:pointer;">';
             } else if (videoMatch) {
-              mediaHtml = '<video src="blog/' + videoMatch[1] + '" controls style="max-width: 200px; border-radius: 10px; margin-bottom: 0.7em; cursor:pointer;"></video>';
+              mediaHtml = '<video src="' + fixPath(videoMatch[1]) + '" controls style="max-width: 200px; border-radius: 10px; margin-bottom: 0.7em; cursor:pointer;"></video>';
             }
             document.getElementById('latest-blog-img').innerHTML = mediaHtml;
 

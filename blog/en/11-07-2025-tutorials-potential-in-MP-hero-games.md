@@ -1,11 +1,11 @@
 ---
-title: "Tutorials potential in multiplayer hero games"
-date: "11-07-2025"
+title: "Tutorials Potential in Multiplayer Hero Games"
+date: "11.07.2025"
 lang: "en"
 summary: "Disscussion of hero-specific tutorials in hero shooters and MOBAs with Mecha Break as a possitive example"
 ---
 
-# Tutorials Potential in Multiplayer Hero Games
+
 
 Tutorials in games are important. They help players understand what is required of them and how to achieve it. They help developers avoid overwhelming players with a huge flood of new information.
 
@@ -54,7 +54,7 @@ But in the trials, they test how well we have understood all these abilities sep
 In addition to internal motivation to pass tests to learn a new character (or how to counter it), there is also external motivation: an epic title in the player card customisation screen and currency used to unlock new stats to show off.
 
 The only controversial point is the lack of any hints, which can be annoying on particularly difficult challenges due to a lack of understanding. On the other hand, this forces you to think and analyse your arsenal and how to use it in a given situation, providing the feeling of discovery I mentioned earlier.
-———
+
 
 ### How can this be projected onto other games?
 

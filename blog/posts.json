@@ -1,16 +1,17 @@
 [
+
   {
-    "file": "en/2025-07-13-my-first-post.md",
-    "title": "My First Blog Post",
-    "date": "2025-07-13",
+    "file": "en/11-07-2025-tutorials-potential-in-MP-hero-games.md",
+    "title": "Tutorials potential in multiplayer hero games",
+    "date": "2025-07-11",
     "lang": "en",
-    "summary": "This is a short summary of my first blog post in English."
+    "summary": "Discussion of hero-specific tutorials in hero shooters and MOBAs with Mecha Break as a positive example."
   },
   {
-    "file": "ru/2025-07-13-my-first-post.md",
-    "title": "Мой первый пост в блоге",
-    "date": "2025-07-13",
+    "file": "ru/11-07-2025-tutorials-potential-in-MP-hero-games.md",
+    "title": "Возможности обучения в мультиплеерных играх с персонажами",
+    "date": "2025-07-11",
     "lang": "ru",
-    "summary": "Краткое описание первого поста на русском языке."
+    "summary": "Обсуждение обучения для героев в мультиплеерных играх на примере Mecha Break."
   }
 ]

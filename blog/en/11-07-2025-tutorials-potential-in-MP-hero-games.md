@@ -24,7 +24,8 @@ In Mecha BREAK, which I had been waiting for a long time, the developers made th
 
 The first part has [cutscenes](https://www.youtube.com/watch?v=_fTi_fJzFYE) to give a plot-based motivation for actions, teaches the basics of control and differences from other games, for example, that melee weapons pass through armour. The second part teaches the mechanics of the battle royale mode. 
 
-https://www.youtube.com/watch?v=_fTi_fJzFYE
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_fTi_fJzFYE" frameborder="0" allowfullscreen></iframe>
+
 
 ### But the reason for this post is the optional training for each character and the trials.
 

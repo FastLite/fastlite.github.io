@@ -38,56 +38,56 @@
 
 
   <!-- Навигационная шапка -->
-<nav style="width: 100%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 1001; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; min-height: 60px;">
-  <div style="font-weight: bold; font-size: 1.2em; letter-spacing: 1px;"><a href="../index.html" style="color: #222; text-decoration: none;">FastLite Portfolio</a></div>
-  <ul style="list-style: none; display: flex; gap: 32px; margin: 0; padding: 0; align-items: center;">
+<nav class="main-nav">
+  <div class="nav-logo"><a href="../index.html">FastLite Portfolio</a></div>
+  <ul class="nav-menu">
     <li><b style="color: #222;">EN</b> | <b><a href="index-ru.html" style="color: #6e6e6e;">RU</a></b></li>
-    <li><a class="smoothscroll" href="#home" style="text-decoration: none; color: #222; font-weight: 1000; ">Home</a></li>
-    <!--  <li><a class="smoothscroll" href="#about" style="text-decoration: none; color: #222; font-weight: 500;">About</a></li> -->
-    <li><a href="blog/index.html" style="text-decoration: none; color: #222; font-weight: 500;">Blog</a></li>
+    <li><a class="smoothscroll" href="#home">Home</a></li>
+    <!--  <li><a class="smoothscroll" href="#about">About</a></li> -->
+    <li><a href="blog/index.html">Blog</a></li>
   </ul>
 </nav>
 
   <!-- Новый верхний блок -->
-  <div style="background: #f7f8fa; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin: 0; padding: 0;">
-    <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1200px; min-height: 340px; margin-top: 2.2em;">
-      <div style="flex: 1; min-width: 320px; max-width: 50%; padding-left: 60px; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start;">
-        <h1 style="font-size: 3.4em; margin: 0 0 0.2em 0; font-weight: bold; color: #181a1b; line-height: 1.1;">Vladislav<br>Volodin</h1>
-        <div style="font-size: 1.25em; color: #333; font-weight: 400; margin-bottom: 0.8em;">Game Designer and Unity/Godot Developer</div>
+  <div class="header-section">
+    <div class="header-content">
+      <div class="header-text">
+        <h1>Vladislav<br>Volodin</h1>
+        <div class="subtitle">Game Designer and Unity/Godot Developer</div>
       </div>
-      <div style="position: relative; flex: 0 0 420px; display: flex; justify-content: center; align-items: flex-start; padding-right: 60px; min-height: 340px;">
+      <div class="header-image-wrapper">
         <!-- Верхний правый квадрат -->
-        <div style="position: absolute; top: 0; right: 30px; width: 80px; height: 80px; background: #f05ad3; border-radius: 12px; z-index: 2;"></div>
+        <div class="decorative-square-top"></div>
         <!-- Фото -->
-        <img src="images/me.jpg" alt="Vladislav Volodin photo" style="width: 340px; height: 340px; object-fit: cover; border-radius: 24px; box-shadow: 0 4px 24px rgba(0,0,0,0.12); border: 4px solid #fff; background: #eee; position: relative; z-index: 1;" />
+        <img src="images/me.jpg" alt="Vladislav Volodin photo" class="profile-image" />
         <!-- Левый синий квадрат -->
-        <div style="position: absolute; left: -60px; bottom: 0px; width: 100px; height: 80px; background: #4da6ff; border-radius: 12px; z-index: 2;"></div>
+        <div class="decorative-square-bottom"></div>
       </div>
     </div>
 
     <!-- About-блок -->
-    <div style="display: flex; align-items: flex-start; justify-content: center; width: 100%; max-width: 1200px; min-height: 340px; margin-top: 2.2em;">
-      <div style="flex: 1; min-width: 320px; max-width: 50%; padding-left: 60px; display: flex; flex-direction: row; justify-content: flex-start; align-items: flex-start;">
-        <span style="display: inline-block; width: 22px; height: 22px; background: #f05ad3; border-radius: 7px; margin-right: 2px;margin-inline-end: 5px; transform: translateY(7px);"></span>
-        <h2 style="font-size: 2em; color: #181a1b; font-weight: bold; margin: 0; white-space: nowrap;">About</h2>
+    <div class="about-section">
+      <div class="about-header">
+        <span class="decorative-square"></span>
+        <h2>About</h2>
       </div>
-      <div style="color: #222; font-size: 1.15em; line-height: 1.6; width: 420px; box-sizing: border-box; padding-right: 60px;">
+      <div class="about-content">
         I'm a game designer and developer with a passion for unique and interesting projects. In my free time, I either play on PC, write blog posts about games and game development, or slowly but steadily bring my own ideas to life.
       </div>
     </div>
   </div>
 
   <!-- Latest Blog Post Preview Section -->
-  <div id="latest-blog-preview" style="width: 100vw; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0; padding: 0 0 2.5em 0;">
-    <div style="width: 100%; max-width: 900px; margin-top: 2.5em;">
-      <h2 style="font-size: 1.5em; color: #222; font-weight: bold; margin: 0 0 0.7em 0; letter-spacing: 0.5px;">Most recent post</h2>
+  <div id="latest-blog-preview" class="blog-preview-section">
+    <div class="blog-preview-container">
+      <h2>Most recent post</h2>
     </div>
-    <div style="width: 100%; max-width: 900px; border-radius: 18px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); background: #f7f8fa; padding: 2.2em 2.5em; display: flex; flex-direction: row; align-items: flex-start; gap: 32px;">
-      <div id="latest-blog-img" style="flex: 0 0 220px; min-width: 120px; max-width: 220px; display: flex; align-items: flex-start; justify-content: center;"></div>
-      <div style="flex: 1; min-width: 0;">
-        <div id="latest-blog-title" style="font-size: 1.6em; font-weight: bold; color: #222; margin-bottom: 0.2em;"></div>
-        <div id="latest-blog-date" style="font-size: 1em; color: #888; margin-bottom: 0.7em;"></div>
-        <div id="latest-blog-preview-text" style="font-size: 1.15em; color: #222; line-height: 1.7;"></div>
+    <div class="blog-preview-card">
+      <div id="latest-blog-img" class="blog-preview-image"></div>
+      <div class="blog-preview-content">
+        <div id="latest-blog-title" class="blog-preview-title"></div>
+        <div id="latest-blog-date" class="blog-preview-date"></div>
+        <div id="latest-blog-preview-text" class="blog-preview-text"></div>
       </div>
     </div>
   </div>

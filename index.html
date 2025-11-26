@@ -869,9 +869,9 @@
               return 'blog/' + p;
             }
             if (imgMatch) {
-              mediaHtml = '<img src="' + fixPath(imgMatch[1]) + '" alt="Preview image" style="max-width: 200px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0.7em; cursor:pointer;">';
+              mediaHtml = '<img src="' + fixPath(imgMatch[1]) + '" alt="Preview image" style="border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 0.7em; cursor:pointer;">';
             } else if (videoMatch) {
-              mediaHtml = '<video src="' + fixPath(videoMatch[1]) + '" controls style="max-width: 200px; border-radius: 10px; margin-bottom: 0.7em; cursor:pointer;"></video>';
+              mediaHtml = '<video src="' + fixPath(videoMatch[1]) + '" controls style="border-radius: 10px; margin-bottom: 0.7em; cursor:pointer;"></video>';
             }
             document.getElementById('latest-blog-img').innerHTML = mediaHtml;
 
